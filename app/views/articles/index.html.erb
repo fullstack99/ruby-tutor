@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-12">
+        <h1 class="title">All list</h1>
+        <%= link_to 'New blog', new_article_path, class: 'custom-tag' %>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"># Number</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Text</th>
+                        <th scope="col" colspan="3"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @articles.each.with_index do |item, index| %>
+                        <tr>
+                            <th scope="row"><%= index + 1 %></th>
+                            <td><%= item.title %></td>
+                            <td><%= item.text %></td>
+                            <td><%= link_to raw('<i class="fa fa-eye"></i>'), article_path(item) %> |                 
+                                <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_article_path(item) %> |
+                                <%= link_to raw('<i class="fa fa-trash"></i>'), article_path(item),
+                                    method: :delete,
+                                    data: {confirm: 'Are you sure?'} %>
+                            </td>
+                        </tr>   
+                    <% end %>
+                </tbody>
+            </table>
+        </div>            
+    </div>
+</div>
+
+
